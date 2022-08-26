@@ -1,0 +1,20 @@
+[
+{
+    "fornavn": "Martin",
+    "efternavn": "Bregnhøj",
+    "mail": "blaa",
+    "emner": ["JavaScript"]
+},
+{
+    "fornavn": "Klaus",
+    "efternavn": "Mandal",
+    "mail": "blaa",
+    "emner": ["CSS"]
+},
+{
+    "fornavn": "Louise",
+    "efternavn": "Holbek",
+    "mail": "blaa",
+    "emner": ["SoMe", "SEO"]
+}
+]

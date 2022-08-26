@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test</title>
+    <style>
+      #holder {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+      }
+      article {
+        border: 1px solid blue;
+        padding: 1rem;
+      }
+      img {
+        max-width: 60%;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <h1>Persongalleri</h1>
+  <body>
+    <main id="holder"></main>
+
+    <template>
+      <article>
+        <img src="" alt="" />
+        <h2 class="fornavn"></h2>
+        <p class="email"></p>
+      </article>
+    </template>
+
+    <script>
+      const endpoint = "https://persongalleri-5d3e.restdb.io/rest/persongalleri ";
+      const mereInfo = {
+        headers: {
+          "x-apikey": "600fe9211346a1524ff12e31",
+        },
+      };
+
+      async function hentData() {
+        const respons = await fetch(endpoint, mereInfo);
+        const personer = await respons.json();
+        //console.log(personer);
+        vis(personer);
+      }
+
+      function vis(personer) {
+        console.log(personer);
+        const holder = document.querySelector("#holder");
+        const skabelon = document.querySelector("template").content;
+        personer.forEach((person) => {
+          const klon = skabelon.cloneNode(true);
+          klon.querySelector(".fornavn").textContent = person.fornavn;
+          klon.querySelector(img).src = "billeder/" + person.billedfornavn;
+          klon.querySelector(img).alt = person.billedfornavn;
+
+          klon.querySelector(".email").textContent = person.email;
+
+        //   klon.querySelector("article").style.borderRadius = "1em";
+
+          holder.appendChild(klon);
+        });
+      }
+
+      hentData();
+    </script>
+  </body>
+</html>
