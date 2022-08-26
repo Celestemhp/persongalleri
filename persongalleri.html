@@ -28,14 +28,15 @@
 
     <template>
       <article>
-        <img src="" alt="" />
+        <img src="" alt="" class="billedfornavn" />
         <h2 class="fornavn"></h2>
         <p class="email"></p>
+        <p class="hobby"></p>
       </article>
     </template>
 
     <script>
-      const endpoint = "https://persongalleri-5d3e.restdb.io/rest/persongalleri ";
+      const endpoint = "https://persongalleri-5d3e.restdb.io/rest/persongalleri";
       const mereInfo = {
         headers: {
           "x-apikey": "600fe9211346a1524ff12e31",
@@ -56,12 +57,12 @@
         personer.forEach((person) => {
           const klon = skabelon.cloneNode(true);
           klon.querySelector(".fornavn").textContent = person.fornavn;
-          klon.querySelector(img).src = "billeder/" + person.billedfornavn;
-          klon.querySelector(img).alt = person.billedfornavn;
+          klon.querySelector("img").src = "billeder/" + person.billedfornavn;
+          klon.querySelector("img").alt = person.billedfornavn;
 
           klon.querySelector(".email").textContent = person.email;
-
-        //   klon.querySelector("article").style.borderRadius = "1em";
+          klon.querySelector(".hobby").textContent = person.hobby;
+          klon.querySelector("article").style.borderRadius = "1em";
 
           holder.appendChild(klon);
         });
